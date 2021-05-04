@@ -5,6 +5,9 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
+import setConfigs from "@gitlab/ui/dist/config";
+setConfigs();
+
 new Vue({
   router,
   store,
