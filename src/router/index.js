@@ -2,6 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import route_names from "./route_names";
 
+// Modules
+import sql from "../modules/sql/router";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -9,6 +12,7 @@ const routes = [
     path: "/",
     name: route_names.home,
     component: () => import(/* webpackChunkName: "main" */ "../views/Main.vue"),
+    children: [...sql],
   },
 ];
 

@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 // Modules
-import sql from "@/modules/sql/store";
+import sql from "../modules/sql/store";
 
 Vue.use(Vuex);
 

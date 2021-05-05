@@ -3,13 +3,15 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import "./db";
+
 Vue.config.productionTip = false;
 
-import setConfigs from "@gitlab/ui/dist/config";
-setConfigs();
+import vuetify from "./plugins/vuetify";
 
 new Vue({
   router,
   store,
+  vuetify,
   render: (h) => h(App),
 }).$mount("#app");
