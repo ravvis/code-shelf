@@ -60,6 +60,13 @@ export default {
     editor_actions() {
       return [
         {
+          icon: "mdi-help-circle",
+          cb: () => {
+            this.$emit("show-suggestions");
+          },
+          message: "Query Suggestions",
+        },
+        {
           icon: "mdi-play",
           cb: () => {
             this.run_code();
@@ -107,7 +114,21 @@ export default {
         window: this.window
       })
     },
-    copy_to_clipboard() {},
+    copy_to_clipboard() {
+      const str = this.window.code;
+      const el = document.createElement("input");
+      // Does not work:
+      // dummy.style.display = "none";
+      el.style.height = '0px';
+      // Does not work:
+      // el.style.width = '0px';
+      el.style.width = '1px';
+      document.body.appendChild(el);
+      el.value = str;
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+    },
   },
 };
 </script>

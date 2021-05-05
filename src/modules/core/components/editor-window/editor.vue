@@ -1,8 +1,6 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <slot></slot>
   </div>
 </template>
-<script>
-
-</script>
+<script></script>

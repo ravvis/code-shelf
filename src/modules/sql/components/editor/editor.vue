@@ -1,5 +1,6 @@
 <template>
   <codemirror
+    style="height: 100%;"
     ref="myCm"
     :value="window.code"
     :options="$options.$cmOptions"
@@ -50,3 +51,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+>>> .CodeMirror{
+  height: 100%;
+}
+</style>
