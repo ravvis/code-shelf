@@ -1,6 +1,6 @@
 export default [
   {
-    path: "/sql",
+    path: "/",
     component: () => import(/* */ "../components/sql_editor.vue")
   }
 ]
