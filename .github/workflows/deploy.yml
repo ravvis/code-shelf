@@ -1,0 +1,32 @@
+name: Build & Deploy
+on:
+  push:
+    branches: [main] # run on pushes to master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+
+      - name: Run deploy script
+        run: yarn deploy
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./dist
