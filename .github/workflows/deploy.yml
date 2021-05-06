@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build & Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +23,9 @@ jobs:
       - name: Build
         run: yarn build
 
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
