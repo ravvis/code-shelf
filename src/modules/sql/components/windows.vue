@@ -5,7 +5,11 @@
         v-for="(window, index) in get_active_windows"
         v-slot:[dynamicSlotName(index)]
       >
-        <window :key="window.id" :window="window" @show-suggestions="open_query_suggestions(window)">
+        <window
+          :key="window.id"
+          :window="window"
+          @show-suggestions="open_query_suggestions(window)"
+        >
           <template #editor>
             <editor :window="window"></editor>
           </template>
@@ -16,7 +20,7 @@
       </template>
     </windows-wrapper>
     <v-row justify="center" align="center">
-      <v-dialog v-model="query_suggestions.show" max-width="600px">
+      <v-dialog v-model="query_suggestions.show" max-width="800px">
         <query-suggestions
           :window="query_suggestions.window"
           :queries="query_suggestions.queries"
@@ -54,7 +58,15 @@ export default {
         {
           en: "Get all categories with id = 2",
           code: 'SELECT * FROM categories WHERE categoryID == "2";',
-        }
+        },
+        {
+          en: "Get all unique names",
+          code: `SELECT DISTINCT name FROM categories;`,
+        },
+        {
+          en: 'Get all names starting with"Co"',
+          code: `SELECT DISTINCT name FROM categories WHERE name LIKE "Co%";`,
+        },
       ],
     },
   }),
@@ -62,16 +74,14 @@ export default {
     this.open_query_suggestions(this.get_active_windows[0]);
   },
   computed: {
-    ...mapGetters("sql", [
-      "get_active_windows"
-    ])
+    ...mapGetters("sql", ["get_active_windows"]),
   },
   methods: {
     dynamicSlotName(index) {
       return "window" + (index + 1);
     },
     open_query_suggestions(window) {
-      console.log({ window })
+      console.log({ window });
       this.$set(
         this,
         "query_suggestions",

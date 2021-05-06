@@ -1,7 +1,7 @@
 name: Build & Deploy
 on:
   push:
-    branches: [main] # run on pushes to master
+    branches: [main] # run on pushes to main
 
 jobs:
   build:
