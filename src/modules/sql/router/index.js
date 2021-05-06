@@ -1,6 +1,7 @@
 export default [
   {
     path: "/",
-    component: () => import(/* */ "../components/sql_editor.vue")
-  }
-]
+    component: () =>
+      import(/* webpackChunkName: "sql" */ "../components/sql_editor.vue"),
+  },
+];
