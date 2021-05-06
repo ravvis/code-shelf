@@ -32,8 +32,8 @@ import windowsWrapper from "../../../modules/core/components/windows_wrapper";
 import window from "../../../modules/core/components/window";
 import querySuggestions from "./query_suggestions";
 import { mapGetters } from "vuex";
-import Result from "./result/result";
-import Editor from "./editor/editor";
+import Result from "./editor-window/result";
+import Editor from "./editor-window/editor";
 export default {
   components: {
     Editor,

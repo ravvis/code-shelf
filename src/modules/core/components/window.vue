@@ -26,29 +26,21 @@
     </v-card-title>
     <SplitGrid class="b-window" direction="row">
       <SplitGridArea>
-        <editor>
-          <slot name="editor"></slot>
-        </editor>
+        <slot name="editor"></slot>
       </SplitGridArea>
       <SplitGridGutter />
       <SplitGridArea>
-        <result>
-          <slot name="result"></slot>
-        </result>
+        <slot name="result"></slot>
       </SplitGridArea>
     </SplitGrid>
   </v-card>
 </template>
 <script>
-import editor from "./editor-window/editor";
-import result from "./editor-window/editor";
 import { SplitGrid, SplitGridArea, SplitGridGutter } from "vue-split-grid";
 import { mapMutations, mapActions } from "vuex";
-
+import copy_to_clipboard from "../utils/copy_to_clipboard";
 export default {
   components: {
-    editor,
-    result,
     SplitGrid,
     SplitGridArea,
     SplitGridGutter,
@@ -76,7 +68,7 @@ export default {
         {
           icon: "mdi-content-copy",
           cb: () => {
-            this.copy_to_clipboard();
+            copy_to_clipboard();
           },
           message: "Copy to clipboard",
         },
@@ -113,21 +105,6 @@ export default {
         code: this.window.code,
         window: this.window
       })
-    },
-    copy_to_clipboard() {
-      const str = this.window.code;
-      const el = document.createElement("input");
-      // Does not work:
-      // dummy.style.display = "none";
-      el.style.height = '0px';
-      // Does not work:
-      // el.style.width = '0px';
-      el.style.width = '1px';
-      document.body.appendChild(el);
-      el.value = str;
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
     },
   },
 };
